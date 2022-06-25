@@ -8,21 +8,34 @@ public class PlayerMove : MonoBehaviour
     float moveX;
     float moveZ;
     Rigidbody rb;
-    // Start is called before the first frame update
+    Vector3 dir = new Vector3(0, 0, 0);
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-
     private void FixedUpdate()
     {
-        moveX = Input.GetAxis("Horizontal") * moveSpeed;
-        moveZ = Input.GetAxis("Vertical") * moveSpeed;
-        rb.velocity = new Vector3(moveX, 0, moveZ);
+        //メインカメラを基準に方向を決める
+        dir = Camera.main.transform.TransformDirection(dir);
+        dir.y = 0;
+        //速度がゼロでなければ
+        if (rb.velocity != Vector3.zero)
+        {
+            //正面に速度を代入
+            transform.forward = rb.velocity;
+        }
+        rb.velocity = dir.normalized * moveSpeed;
     }
-    // Update is called once per frame
     void Update()
     {
-        
+        Move();
+    }
+    void Move()
+    {
+        //入力
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveZ = Input.GetAxisRaw("Vertical");
+        //方向ベクトルを取得
+        dir = new Vector3(moveX, 0, moveZ);
     }
 }
