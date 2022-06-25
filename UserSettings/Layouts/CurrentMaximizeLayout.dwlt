@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 20812
+  controlID: 21115
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 20813
+  controlID: 21116
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 20792
+  controlID: 20997
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -227,7 +227,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0e88ffff3e88ffff4088ffff3a91ffffd2a0ffffe2a7ffff1cfbffff128d0000
+      m_ExpandedIDs: 3cacfeff0e88ffff3e88ffff4088ffff3a91ffffd2a0ffffe2a7ffff1cfbffff128d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -581,9 +581,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.14481317, y: 0.14842454, z: -0.02197488, w: 0.9780166}
   m_Size:
-    m_Target: 8.3395605
+    m_Target: 8.714841
     speed: 2
-    m_Value: 8.3395605
+    m_Value: 8.714841
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -627,16 +627,16 @@ MonoBehaviour:
     y: 441.6
     width: 1180.8
     height: 281.19998
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
   - {fileID: 12}
   - {fileID: 13}
   - {fileID: 14}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -678,22 +678,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/AssetStore/SwordsmanGirl/Textures
+    - Assets/AssetStore/Hovl Studio/Sword slash VFX/Demo scene
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/AssetStore/SwordsmanGirl/Textures
+  - Assets/AssetStore/Hovl Studio/Sword slash VFX/Demo scene
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\81901\3dAction
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 487c0000
-    m_LastClickedID: 31816
-    m_ExpandedIDs: 000000002c5f00002e5f0000305f0000325f00005c5f00002e7c0000
+    m_SelectedIDs: d0c00000
+    m_LastClickedID: 49360
+    m_ExpandedIDs: 000000002c5f00002e5f0000305f0000325f00005c5f0000f0c0000000c10000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -746,9 +746,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 3e88ffff
-    m_LastClickedInstanceID: -30658
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: ecc00000
+    m_LastClickedInstanceID: 49388
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -837,14 +837,14 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: 110700000, guid: 212b3a957fa7bee41a0bf8c3b14ce293, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.37767792
+    - e00: 1
       e01: 0
       e02: 0
-      e03: 138.62614
+      e03: 0
       e10: 0
-      e11: 0.37767792
+      e11: 1
       e12: 0
-      e13: 104.446655
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -899,7 +899,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 36106
+  m_LastSelectedObjectID: 36090
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -961,7 +961,7 @@ MonoBehaviour:
     m_CachedPref: -161
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 36090
+  m_LastInspectedObjectInstanceID: 49388
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
