@@ -14,7 +14,6 @@ public class PlayerMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
- 
         //ƒƒCƒ“ƒJƒƒ‰‚ğŠî€‚É•ûŒü‚ğŒˆ‚ß‚é
         dir = Camera.main.transform.TransformDirection(dir);
         dir.y = 0;
@@ -24,9 +23,8 @@ public class PlayerMove : MonoBehaviour
             //³–Ê‚É‘¬“x‚ğ‘ã“ü
             transform.forward = dir;
         }
-
-        dir.y = rb.velocity.y;
-        rb.velocity = dir.normalized * moveSpeed;
+        rb.velocity = dir.normalized * moveSpeed + new Vector3(0f, rb.velocity.y, 0f);
+        //rb.velocity = new Vector3(dir.normalized.x * moveSpeed, rb.velocity.y, dir.normalized.z * moveSpeed);
     }
     void Update()
     {
@@ -43,8 +41,8 @@ public class PlayerMove : MonoBehaviour
     }
     void Jump()
     {
-        bool jump = Input.GetButtonDown("Jump");
-        if(jump)
+        //bool jump = ;
+        if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("aaa");
             rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
