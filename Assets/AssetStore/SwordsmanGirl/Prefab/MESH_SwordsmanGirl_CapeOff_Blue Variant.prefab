@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
       propertyPath: m_Name
-      value: MESH_SwordsmanGirl_CapeOff_Blue
+      value: MESH_SwordsmanGirl_CapeOff_Blue Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24,6 +28,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -36,14 +44,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -53,6 +53,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 961b0c40a748adf40bb18dd8456efcff, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
