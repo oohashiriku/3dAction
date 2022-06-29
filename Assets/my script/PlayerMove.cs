@@ -7,10 +7,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpPower;
     Rigidbody rb;
+    Animator anim;
     Vector3 dir = new Vector3(0, 0, 0);
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
@@ -20,8 +22,12 @@ public class PlayerMove : MonoBehaviour
         //速度がゼロでなければ
         if (dir != Vector3.zero)
         {
+            anim.SetFloat("speed", 1f);
             //正面に速度を代入
             transform.forward = dir;
+        }else
+        {
+            anim.SetFloat("speed", 0f);
         }
             rb.velocity = dir.normalized * moveSpeed + new Vector3(0f, rb.velocity.y, 0f);
     }
@@ -37,7 +43,7 @@ public class PlayerMove : MonoBehaviour
         float moveZ = Input.GetAxisRaw("Vertical");
         //方向ベクトルを取得
         dir = new Vector3(moveX, 0, moveZ);
-        
+
     }
     void Jump()
     {
