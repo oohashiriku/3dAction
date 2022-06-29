@@ -4,37 +4,41 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
-    [SerializeField] float jumpPower;
-    Rigidbody rb;
-    Animator anim;
-    Vector3 dir = new Vector3(0, 0, 0);
+    [SerializeField] float _moveSpeed;
+    [SerializeField] float _jumpPower;
+    Rigidbody _rb;
+    Animator _anim;
+    Vector3 _dir = new Vector3(0, 0, 0);
+    int _equipCount = 0; 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
         //メインカメラを基準に方向を決める
-        dir = Camera.main.transform.TransformDirection(dir);
-        dir.y = 0;
+        _dir = Camera.main.transform.TransformDirection(_dir);
+        _dir.y = 0;
         //速度がゼロでなければ
-        if (dir != Vector3.zero)
+        if (_dir != Vector3.zero)
         {
-            anim.SetFloat("speed", 1f);
+            _anim.SetFloat("speed", 1f);
             //正面に速度を代入
-            transform.forward = dir;
-        }else
-        {
-            anim.SetFloat("speed", 0f);
+            transform.forward = _dir;
         }
-            rb.velocity = dir.normalized * moveSpeed + new Vector3(0f, rb.velocity.y, 0f);
+        else
+        {
+            _anim.SetFloat("speed", 0f);
+        }
+        _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);
     }
     void Update()
     {
         Move();
         Jump();
+        Equip();
+
     }
     void Move()
     {
@@ -42,15 +46,23 @@ public class PlayerMove : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
         //方向ベクトルを取得
-        dir = new Vector3(moveX, 0, moveZ);
+        _dir = new Vector3(moveX, 0, moveZ);
 
     }
     void Jump()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("aaa");
-            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+        }
+    }
+    void Equip()
+    {
+        if(Input.GetButtonDown("Fire2") && _equipCount <= 0)
+        {
+            Debug.Log("ss");
+            _equipCount++;
+            _anim.SetTrigger("isEquip");
         }
     }
 }
