@@ -6,6 +6,8 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower;
+    [SerializeField] GameObject _sword;
+    [SerializeField] GameObject _swordEquip;
     Rigidbody _rb;
     Animator _anim;
     Vector3 _dir = new Vector3(0, 0, 0);
@@ -64,5 +66,10 @@ public class PlayerMove : MonoBehaviour
             _equipCount++;
             _anim.SetTrigger("isEquip");
         }
+    }
+    void EquipEvent()
+    {
+        _sword.SetActive(false);
+        _swordEquip.SetActive(true);
     }
 }

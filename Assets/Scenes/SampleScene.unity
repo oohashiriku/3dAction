@@ -940,6 +940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _jumpPower: 10
+  _sword: {fileID: 1536416243}
+  _swordEquip: {fileID: 140819232}
 --- !u!136 &1021726809
 CapsuleCollider:
   m_ObjectHideFlags: 0
