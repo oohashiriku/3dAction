@@ -2170,6 +2170,7 @@ GameObject:
   - component: {fileID: 1021726810}
   - component: {fileID: 1021726809}
   - component: {fileID: 1021726806}
+  - component: {fileID: 1536443454}
   m_Layer: 0
   m_Name: MESH_SwordsmanGirl_CapeOff_Blue
   m_TagString: Untagged
@@ -3757,6 +3758,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1536443454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536415773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a857d03034fc74b86c04b5f5eb938c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swordEquip: {fileID: 140819232}
 --- !u!4 &1536443455
 Transform:
   m_ObjectHideFlags: 0
