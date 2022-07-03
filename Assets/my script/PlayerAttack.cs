@@ -6,7 +6,8 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] GameObject _swordEquip;
     Animator _anim;
-    int _attackCount = 0;
+    int _comboCount = 0;
+    bool _test = false;
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -18,21 +19,25 @@ public class PlayerAttack : MonoBehaviour
     }
     void AttackCombo()
     {
-        bool combo = Input.GetButtonDown("Fire3");
-        if (combo && _swordEquip.activeSelf && _attackCount <= 0)
+        //psコントローラの〇ボタンを押したとき。かつ、剣を構えてるときに以下を実行する。
+        if (Input.GetButtonDown("Fire3") && _swordEquip.activeSelf && !_test)
         {
-            _attackCount++;
-            _anim.SetTrigger("isAttack");
+            Debug.Log(_comboCount % 3 + 1);
+            //attackモーションスタート
+            StartCoroutine(AttackTest(_comboCount % 3 + 1));
+            //コンボ数をカウント
+            _comboCount++;
         }
-        else if(combo && _anim.GetCurrentAnimatorStateInfo(0).IsName("combo1") && _attackCount <= 1)
-        {
-            _attackCount++;
-            _anim.SetTrigger("isAttack2");
-        }
-        else if (combo && _anim.GetCurrentAnimatorStateInfo(0).IsName("combo2") && _attackCount <= 2)
-        {
-            _attackCount++;
-            _anim.SetTrigger("isAttack3");
-        }
+    }
+
+    /// <summary> i番目のattackモーションをtrueにする。 </summary>
+    private IEnumerator AttackTest(int i)
+    {
+        _test = true;
+        yield return new WaitForSeconds(0.1f);
+        _anim.SetBool($"isAttack{i}", true);
+        yield return new WaitForSeconds(0.2f);
+        _anim.SetBool($"isAttack{i}", false);
+        _test = false;
     }
 }
