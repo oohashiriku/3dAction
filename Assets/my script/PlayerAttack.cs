@@ -8,9 +8,11 @@ public class PlayerAttack : MonoBehaviour
     Animator _anim;
     int _comboCount = 0;
     bool _test = false;
+    Rigidbody _rb;
     void Start()
     {
         _anim = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -22,9 +24,9 @@ public class PlayerAttack : MonoBehaviour
         //psコントローラの〇ボタンを押したとき。かつ、剣を構えてるときに以下を実行する。
         if (Input.GetButtonDown("Fire3") && _swordEquip.activeSelf && !_test)
         {
-            Debug.Log(_comboCount % 3 + 1);
+            //Debug.Log(_comboCount % 3 + 1);
             //attackモーションスタート
-            StartCoroutine(AttackTest(_comboCount % 3 + 1));
+            StartCoroutine(AttackTest(_comboCount % 3 + 1));//コンボ数の上限を3にする。
             //コンボ数をカウント
             _comboCount++;
         }

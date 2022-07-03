@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //メインカメラを基準に方向を決める
+        //メインカメラを基準に方向を決める。
         _dir = Camera.main.transform.TransformDirection(_dir);
         _dir.y = 0;
         //速度がゼロでなければ
@@ -37,10 +37,9 @@ public class PlayerMove : MonoBehaviour
     }
     void Update()
     {
-        Move();
-        Jump();
-        Equip();
-
+        Move();//playerの移動
+        Jump();//playerのジャンプ
+        Equip();//playerの抜刀
     }
     void Move()
     {
@@ -66,10 +65,21 @@ public class PlayerMove : MonoBehaviour
             _equipCount++;
             _anim.SetTrigger("isEquip");
         }
+        else if(Input.GetButtonDown("Fire2") && _equipCount == 1)
+        {
+            _anim.SetTrigger("isEquip2");
+            _equipCount = 0;
+        }
     }
+    /// <summary> /// 抜刀のアニメーションイベント /// </summary>
     void EquipEvent()
     {
         _sword.SetActive(false);
         _swordEquip.SetActive(true);
+    }
+    void unequip()
+    {
+        _sword.SetActive(true);
+        _swordEquip.SetActive(false);
     }
 }
