@@ -11,7 +11,8 @@ public class PlayerMove : MonoBehaviour
     Rigidbody _rb;
     Animator _anim;
     Vector3 _dir = new Vector3(0, 0, 0);
-    int _equipCount = 0; 
+    int _equipCount = 0;
+    bool _canEquip = false;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -33,7 +34,7 @@ public class PlayerMove : MonoBehaviour
         {
             _anim.SetFloat("speed", 0f);
         }
-        _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);
+        _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);//y座標はそのまま
     }
     void Update()
     {
@@ -44,41 +45,46 @@ public class PlayerMove : MonoBehaviour
     void Move()
     {
         //入力
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveZ = Input.GetAxisRaw("Vertical");
+        float _moveX = Input.GetAxisRaw("Horizontal");
+        float _moveZ = Input.GetAxisRaw("Vertical");
         //方向ベクトルを取得
-        _dir = new Vector3(moveX, 0, moveZ);
+        _dir = new Vector3(_moveX, 0, _moveZ);
 
     }
     void Jump()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);//ジャンプの計算
         }
     }
     void Equip()
     {
-        if(Input.GetButtonDown("Fire2") && _equipCount <= 0)
+        //psコントローラーの□ボタンを押したとき。かつ、インターバルが終わったとき。
+        if(Input.GetButtonDown("Fire2") && !_canEquip)
         {
-            Debug.Log("ss");
+            //納刀、抜刀のモーションがスタート
+            StartCoroutine(Equip(_equipCount % 2 + 1));//納刀と抜刀のモーションを交互にする。
             _equipCount++;
-            _anim.SetTrigger("isEquip");
-        }
-        else if(Input.GetButtonDown("Fire2") && _equipCount == 1)
-        {
-            _anim.SetTrigger("isEquip2");
-            _equipCount = 0;
         }
     }
-    /// <summary> /// 抜刀のアニメーションイベント /// </summary>
+    /// <summary> インターバル </summary>
+    private IEnumerator Equip(int i)
+    {
+        _canEquip = true;
+        _anim.SetTrigger($"isEquip{i}");
+        yield return new WaitForSeconds(1.5f);//1.5秒待つ
+        _canEquip = false;
+    }
+    /// <summary> 抜刀のアニメーションイベント </summary>
     void EquipEvent()
     {
         _sword.SetActive(false);
         _swordEquip.SetActive(true);
     }
-    void unequip()
-    {
+    /// <summary> 納刀のアニメーションイベント </summary>
+    void UnequipEvent()
+    {       
         _sword.SetActive(true);
         _swordEquip.SetActive(false);
     }
