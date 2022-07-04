@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     Vector3 _dir = new Vector3(0, 0, 0);
     int _equipCount = 0;
     bool _canEquip = false;
+    bool _canRoll = false;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -41,6 +42,7 @@ public class PlayerMove : MonoBehaviour
         Move();//playerの移動
         Jump();//playerのジャンプ
         Equip();//playerの抜刀
+        Roll();
     }
     void Move()
     {
@@ -64,17 +66,31 @@ public class PlayerMove : MonoBehaviour
         if(Input.GetButtonDown("Fire2") && !_canEquip)
         {
             //納刀、抜刀のモーションがスタート
-            StartCoroutine(Equip(_equipCount % 2 + 1));//納刀と抜刀のモーションを交互にする。
+            StartCoroutine(EquipInterval(_equipCount % 2 + 1));//納刀と抜刀のモーションを交互にする。
             _equipCount++;
         }
     }
     /// <summary> インターバル </summary>
-    private IEnumerator Equip(int i)
+    private IEnumerator EquipInterval(int i)
     {
         _canEquip = true;
         _anim.SetTrigger($"isEquip{i}");
         yield return new WaitForSeconds(1.5f);//1.5秒待つ
         _canEquip = false;
+    }
+    void Roll()
+    {
+        if(Input.GetButtonDown("roll") && !_canRoll)
+        {
+            StartCoroutine(RollInterval());
+        }
+    }
+    private IEnumerator RollInterval()
+    {
+        _canRoll = true;
+        _anim.SetTrigger("isRoll");
+        yield return new WaitForSeconds(1.5f);
+        _canRoll = false;
     }
     /// <summary> 抜刀のアニメーションイベント </summary>
     void EquipEvent()

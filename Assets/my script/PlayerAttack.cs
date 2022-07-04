@@ -23,13 +23,13 @@ public class PlayerAttack : MonoBehaviour
         {                                                           //～～～～～～
                                                                     //インターバルが終わったとき。
             //attackモーションスタート                              
-            StartCoroutine(AttackTest(_comboCount % 3 + 1));//コンボ数の上限を3にする。
+            StartCoroutine(IsAttack(_comboCount % 3 + 1));//コンボ数の上限を3にする。
             //コンボ数をカウント
             _comboCount++;
         }
     }
     /// <summary> i番目のattackモーションをtrueにする。かつ、インターバルがスタートする。</summary>
-    private IEnumerator AttackTest(int i)
+    private IEnumerator IsAttack(int i)
     {
         _canCombo = true;
         yield return new WaitForSeconds(0.1f);//0.1秒待つ
