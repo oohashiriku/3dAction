@@ -20,9 +20,8 @@ public class PlayerAttack : MonoBehaviour
     {
         //psコントローラの〇ボタンを押したとき。かつ、剣を構えてるときに以下を実行する。
         if (Input.GetButtonDown("Fire3") && _swordEquip.activeSelf && !_canCombo)
-        {                                                           //～～～～～～
-                                                                    //インターバルが終わったとき。
-            //attackモーションスタート                              
+        {
+            //attackモーションスタート
             StartCoroutine(IsAttack(_comboCount % 3 + 1));//コンボ数の上限を3にする。
             //コンボ数をカウント
             _comboCount++;

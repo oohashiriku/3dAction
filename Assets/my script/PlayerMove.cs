@@ -34,8 +34,12 @@ public class PlayerMove : MonoBehaviour
         else
         {
             _anim.SetFloat("speed", 0f);
+        } 
+
+        if(_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
+        {
+            _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);//y座標はそのまま
         }
-        _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);//y座標はそのまま
     }
     void Update()
     {
@@ -89,7 +93,7 @@ public class PlayerMove : MonoBehaviour
     {
         _canRoll = true;
         _anim.SetTrigger("isRoll");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.2f);
         _canRoll = false;
     }
     /// <summary> 抜刀のアニメーションイベント </summary>
