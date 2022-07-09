@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         AttackCombo();
+        AttackRush();
     }
     void AttackCombo()
     {
@@ -36,5 +37,12 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(0.2f);//0.2•b‘Ò‚Â
         _anim.SetBool($"isAttack{i}", false);
         _canCombo = false;
+    }
+    void AttackRush()
+    {
+        if(Input.GetButtonDown("rush"))
+        {
+            _anim.SetTrigger("isTuki");
+        }
     }
 }
