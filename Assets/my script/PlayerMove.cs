@@ -8,9 +8,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float _jumpPower;
     [SerializeField] GameObject _sword;
     [SerializeField] GameObject _swordEquip;
+    Vector3 _dir = new Vector3(0, 0, 0);
     Rigidbody _rb;
     Animator _anim;
-    Vector3 _dir = new Vector3(0, 0, 0);
     int _equipCount = 0;
     bool _canEquip = false;
     bool _canRoll = false;

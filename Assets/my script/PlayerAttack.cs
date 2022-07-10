@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] GameObject _swordEquip;
+    [SerializeField] float _attackSpeed;
     Animator _anim;
+    Rigidbody _rb;
     int _comboCount = 0;
     bool _canCombo = false;
     void Start()
     {
         _anim = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody>();
     }
     void Update()
     {
@@ -44,5 +47,9 @@ public class PlayerAttack : MonoBehaviour
         {
             _anim.SetTrigger("isTuki");
         }
+    }
+    void MoveAttack()
+    {
+        _rb.AddForce(transform.forward * _attackSpeed, ForceMode.Impulse);
     }
 }
