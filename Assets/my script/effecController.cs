@@ -10,7 +10,7 @@ public class effecController : MonoBehaviour
     }
     IEnumerator Effect()
     {
-        yield return new WaitForSeconds(0.2f);
-        //Destroy(gameObject);
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
     }
 }

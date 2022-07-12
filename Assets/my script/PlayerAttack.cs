@@ -55,9 +55,10 @@ public class PlayerAttack : MonoBehaviour
     }
     void MoveAttack()
     {
-        GameObject _instance = Instantiate(_effect, this.transform.position, Quaternion.identity);
+        GameObject _instance = Instantiate(_effect);
         _instance.transform.position = _muzzle.transform.position;
-
+        _instance.transform.rotation = _muzzle.transform.rotation;
+        _instance.transform.parent = transform;
         _rb.AddForce(transform.forward * _attackSpeed, ForceMode.Impulse);
     }
 }
