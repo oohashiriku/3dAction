@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] GameObject _swordEquip;
-    [SerializeField] float _attackSpeed;
+    [SerializeField] Transform _muzzle;
+    [SerializeField] GameObject _effect;
+   [SerializeField] float _attackSpeed;
+   
+    ParticleSystem _ps;
     Animator _anim;
     Rigidbody _rb;
     int _comboCount = 0;
@@ -14,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
+        _ps = GetComponent<ParticleSystem>();
     }
     void Update()
     {
@@ -50,6 +55,9 @@ public class PlayerAttack : MonoBehaviour
     }
     void MoveAttack()
     {
+        GameObject _instance = Instantiate(_effect, this.transform.position, Quaternion.identity);
+        _instance.transform.position = _muzzle.transform.position;
+
         _rb.AddForce(transform.forward * _attackSpeed, ForceMode.Impulse);
     }
 }
