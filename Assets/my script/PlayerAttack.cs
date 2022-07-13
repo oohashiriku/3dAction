@@ -7,18 +7,16 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject _swordEquip;
     [SerializeField] Transform _muzzle;
     [SerializeField] GameObject _effect;
-   [SerializeField] float _attackSpeed;
-   
-    ParticleSystem _ps;
+    [SerializeField] float _attackSpeed;
     Animator _anim;
     Rigidbody _rb;
     int _comboCount = 0;
     bool _canCombo = false;
+    bool _canRush = false;
     void Start()
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
-        _ps = GetComponent<ParticleSystem>();
     }
     void Update()
     {
@@ -48,11 +46,19 @@ public class PlayerAttack : MonoBehaviour
     }
     void AttackRush()
     {
-        if(Input.GetButtonDown("rush"))
+        if(Input.GetButtonDown("rush") && _swordEquip.activeSelf && !_canRush)
         {
             _anim.SetTrigger("isTuki");
+            StartCoroutine(RushInterval());
         }
     }
+    private IEnumerator RushInterval()
+    {
+        _canRush = true;
+        yield return new WaitForSeconds(1f);
+        _canRush = false;
+    }
+
     void MoveAttack()
     {
         GameObject _instance = Instantiate(_effect);
