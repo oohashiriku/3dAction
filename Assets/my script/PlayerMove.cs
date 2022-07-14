@@ -27,26 +27,33 @@ public class PlayerMove : MonoBehaviour
         //速度がゼロでなければ
         if (_dir != Vector3.zero)
         {
-            _anim.SetFloat("speed", 1f);
+            _anim.SetFloat("speed", _moveSpeed, 0.1f, Time.deltaTime);
             //正面に速度を代入
             transform.forward = _dir;
         }
         else
         {
-            _anim.SetFloat("speed", 0f);
-        } 
+            _dir.y = 0;
+            _anim.SetFloat("speed",0f);
+        }
 
-        if(_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
         {
             _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);//y座標はそのまま
         }
+
     }
     void Update()
     {
+        if (!_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
+        {
+            _rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
         Move();//playerの移動
         Jump();//playerのジャンプ
         Equip();//playerの抜刀
         Roll();
+        
     }
     void Move()
     {
@@ -55,7 +62,6 @@ public class PlayerMove : MonoBehaviour
         float _moveZ = Input.GetAxisRaw("Vertical");
         //方向ベクトルを取得
         _dir = new Vector3(_moveX, 0, _moveZ);
-
     }
     void Jump()
     {
