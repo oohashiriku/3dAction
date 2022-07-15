@@ -6,8 +6,6 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower;
-    [SerializeField] GameObject _sword;
-    [SerializeField] GameObject _swordEquip;
     Vector3 _dir = new Vector3(0, 0, 0);
     Rigidbody _rb;
     Animator _anim;
@@ -37,7 +35,7 @@ public class PlayerMove : MonoBehaviour
             _anim.SetFloat("speed",0f);
         }
 
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("run") || _anim.GetCurrentAnimatorStateInfo(0).IsName("Roll"))
         {
             _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);//y座標はそのまま
         }
@@ -52,8 +50,7 @@ public class PlayerMove : MonoBehaviour
         Move();//playerの移動
         Jump();//playerのジャンプ
         Equip();//playerの抜刀
-        Roll();
-        
+        Roll();//playerのローリング
     }
     void Move()
     {
@@ -80,7 +77,7 @@ public class PlayerMove : MonoBehaviour
             _equipCount++;
         }
     }
-    /// <summary> インターバル </summary>
+    /// <summary> 抜刀納刀のインターバル </summary>
     private IEnumerator EquipInterval(int i)
     {
         _canEquip = true;
@@ -90,28 +87,19 @@ public class PlayerMove : MonoBehaviour
     }
     void Roll()
     {
+        //psコントローラーの×ボタンを押したとき。かつインターバルが終わったとき。
         if(Input.GetButtonDown("roll") && !_canRoll)
         {
+            //ローリングのアニメーションスタート
             StartCoroutine(RollInterval());
         }
     }
+    /// <summary> ローリングのインターバル </summary>
     private IEnumerator RollInterval()
     {
         _canRoll = true;
         _anim.SetTrigger("isRoll");
         yield return new WaitForSeconds(1.2f);
         _canRoll = false;
-    }
-    /// <summary> 抜刀のアニメーションイベント </summary>
-    void EquipEvent()
-    {
-        _sword.SetActive(false);
-        _swordEquip.SetActive(true);
-    }
-    /// <summary> 納刀のアニメーションイベント </summary>
-    void UnequipEvent()
-    {       
-        _sword.SetActive(true);
-        _swordEquip.SetActive(false);
     }
 }
