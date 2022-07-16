@@ -6,6 +6,9 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower;
+    [SerializeField] GameObject _sword;
+    [SerializeField] GameObject _swordEquip;
+    [SerializeField] PlayerAttack _playerAttack;
     Vector3 _dir = new Vector3(0, 0, 0);
     Rigidbody _rb;
     Animator _anim;
@@ -34,19 +37,12 @@ public class PlayerMove : MonoBehaviour
             _dir.y = 0;
             _anim.SetFloat("speed",0f);
         }
-
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("run") || _anim.GetCurrentAnimatorStateInfo(0).IsName("Roll"))
-        {
+        //if(_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
             _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);//y座標はそのまま
-        }
-
     }
+
     void Update()
     {
-        if (!_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
-        {
-            _rb.constraints = RigidbodyConstraints.FreezeRotation;
-        }
         Move();//playerの移動
         Jump();//playerのジャンプ
         Equip();//playerの抜刀
@@ -54,12 +50,21 @@ public class PlayerMove : MonoBehaviour
     }
     void Move()
     {
-        //入力
-        float _moveX = Input.GetAxisRaw("Horizontal");
-        float _moveZ = Input.GetAxisRaw("Vertical");
-        //方向ベクトルを取得
-        _dir = new Vector3(_moveX, 0, _moveZ);
+        if(_playerAttack._canAttack)
+        {
+            _dir = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            Debug.Log("qq");
+            //入力
+            float _moveX = Input.GetAxisRaw("Horizontal");
+            float _moveZ = Input.GetAxisRaw("Vertical");
+            //方向ベクトルを取得
+            _dir = new Vector3(_moveX, 0, _moveZ);
+        }
     }
+    
     void Jump()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -101,5 +106,17 @@ public class PlayerMove : MonoBehaviour
         _anim.SetTrigger("isRoll");
         yield return new WaitForSeconds(1.2f);
         _canRoll = false;
+    }
+    /// <summary> 抜刀のアニメーションイベント </summary>
+    void EquipEvent()
+    {
+        _sword.SetActive(false);
+        _swordEquip.SetActive(true);
+    }
+    /// <summary> 納刀のアニメーションイベント </summary>
+    void UnequipEvent()
+    {
+        _sword.SetActive(true);
+        _swordEquip.SetActive(false);
     }
 }

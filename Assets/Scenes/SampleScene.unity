@@ -892,6 +892,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 8
   _jumpPower: 10
+  _sword: {fileID: 1536416243}
+  _swordEquip: {fileID: 140819232}
+  _playerAttack: {fileID: 1536443454}
 --- !u!136 &1021726809
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3650,7 +3653,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a857d03034fc74b86c04b5f5eb938c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _comboEffect: {fileID: 1840690549904964, guid: a8a6ba91edbeef2439175ecf0e08e6fb, type: 3}
+  _rushEffect: {fileID: 1893033738566276, guid: 3e04efdf8ee665d48962b33b06e8e3d3, type: 3}
+  _rushMuzzle: {fileID: 686354134}
+  _comboMuzzle1: {fileID: 1811375457}
+  _comboMuzzle2: {fileID: 1007700685}
+  _comboMuzzle3: {fileID: 1961695450}
+  _attackSpeed: 15
   _swordEquip: {fileID: 140819232}
+  _canAttack: 0
 --- !u!4 &1536443455
 Transform:
   m_ObjectHideFlags: 0
@@ -3678,15 +3689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b5fc3dad2295a43bfb205ff0519cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _comboEffect: {fileID: 1840690549904964, guid: a8a6ba91edbeef2439175ecf0e08e6fb, type: 3}
-  _rushEffect: {fileID: 1893033738566276, guid: 3e04efdf8ee665d48962b33b06e8e3d3, type: 3}
-  _rushMuzzle: {fileID: 686354134}
-  _comboMuzzle1: {fileID: 1811375457}
-  _comboMuzzle2: {fileID: 1007700685}
-  _comboMuzzle3: {fileID: 1961695450}
-  _attackSpeed: 15
-  _sword: {fileID: 1536416243}
-  _swordEquip: {fileID: 140819232}
 --- !u!4 &1536443457
 Transform:
   m_ObjectHideFlags: 0
