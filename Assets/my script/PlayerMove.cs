@@ -37,8 +37,10 @@ public class PlayerMove : MonoBehaviour
             _dir.y = 0;
             _anim.SetFloat("speed",0f);
         }
-        //if(_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
+        if(_anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
+        {
             _rb.velocity = _dir.normalized * _moveSpeed + new Vector3(0f, _rb.velocity.y, 0f);//y座標はそのまま
+        }
     }
 
     void Update()
@@ -56,7 +58,6 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            Debug.Log("qq");
             //入力
             float _moveX = Input.GetAxisRaw("Horizontal");
             float _moveZ = Input.GetAxisRaw("Vertical");
@@ -95,15 +96,20 @@ public class PlayerMove : MonoBehaviour
         //psコントローラーの×ボタンを押したとき。かつインターバルが終わったとき。
         if(Input.GetButtonDown("roll") && !_canRoll)
         {
+            _playerAttack._canAttack = true;
+            _canRoll = true;
+            _anim.SetTrigger("isRoll");
             //ローリングのアニメーションスタート
             StartCoroutine(RollInterval());
+        }
+        if(_canRoll)
+        {
+            _rb.velocity = transform.forward * _moveSpeed;
         }
     }
     /// <summary> ローリングのインターバル </summary>
     private IEnumerator RollInterval()
     {
-        _canRoll = true;
-        _anim.SetTrigger("isRoll");
         yield return new WaitForSeconds(1.2f);
         _canRoll = false;
     }
