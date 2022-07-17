@@ -3659,8 +3659,13 @@ MonoBehaviour:
   _comboMuzzle1: {fileID: 1811375457}
   _comboMuzzle2: {fileID: 1007700685}
   _comboMuzzle3: {fileID: 1961695450}
+  _comboMuzzle:
+  - {fileID: 1811375457}
+  - {fileID: 1007700685}
+  - {fileID: 1961695450}
   _attackSpeed: 15
   _swordEquip: {fileID: 140819232}
+  _test: 100
   _canAttack: 0
 --- !u!4 &1536443455
 Transform:
