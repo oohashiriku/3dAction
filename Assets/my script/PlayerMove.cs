@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
     }
     void Move()
     {
-        if(_playerAttack._canAttack)
+        if(_playerAttack._canAttack && !_canRoll)
         {
             _dir = new Vector3(0, 0, 0);
         }

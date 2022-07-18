@@ -7,15 +7,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject _comboEffect;
     [SerializeField] GameObject _rushEffect;
     [SerializeField] Transform _rushMuzzle;
-    //[SerializeField] Transform _comboMuzzle1;
-    //[SerializeField] Transform _comboMuzzle2;
-    //[SerializeField] Transform _comboMuzzle3;
     [SerializeField] Transform[] _comboMuzzle;
     [SerializeField] float _attackSpeed;
     [SerializeField] GameObject _swordEquip;
     [SerializeField] float _test;
     Animator _anim;
     int _comboCount = 0;
+    int _comboMuzzleCount = 0;
     bool _canCombo = false;
     bool _canRush = false;
     public bool _canAttack = false;
@@ -70,35 +68,27 @@ public class PlayerAttack : MonoBehaviour
     }
     void MoveAttack()
     {
+        Debug.Log("ìÀÇ´çUåÇ");
         GameObject _instance = Instantiate(_rushEffect);
         _instance.transform.position = _rushMuzzle.transform.position;
         _instance.transform.rotation = _rushMuzzle.transform.rotation;
         _instance.transform.parent = transform;
         _rb.AddForce(transform.forward * _attackSpeed, ForceMode.Impulse);
     }
-    void ComboEffect1(int i)
+    void ComboEffect1()
     {
+        
+        Debug.Log($"ÉRÉìÉ{çUåÇ{_comboMuzzleCount}");
         GameObject _instance = Instantiate(_comboEffect);
-        _instance.transform.position = _comboMuzzle[i].transform.position;
-        _instance.transform.rotation = _comboMuzzle[i].transform.rotation;
+        _instance.transform.position = _comboMuzzle[_comboMuzzleCount].transform.position;
+        _instance.transform.rotation = _comboMuzzle[_comboMuzzleCount].transform.rotation;
         _instance.transform.parent = transform;
+        _comboMuzzleCount++;
+        
     }
-    //void ComboEffect2()
-    //{
-    //    GameObject _instance = Instantiate(_comboEffect);
-    //    _instance.transform.position = _comboMuzzle2.transform.position;
-    //    _instance.transform.rotation = _comboMuzzle2.transform.rotation;
-    //    _instance.transform.parent = transform;
-    //}
-    //void ComboEffect3()
-    //{
-    //    GameObject _instance = Instantiate(_comboEffect);
-    //    _instance.transform.position = _comboMuzzle3.transform.position;
-    //    _instance.transform.rotation = _comboMuzzle3.transform.rotation;
-    //    _instance.transform.parent = transform;
-    //}
     void CanComboMove()
     {
+        _comboMuzzleCount = 0;
         _canAttack = false;
     }
 }
