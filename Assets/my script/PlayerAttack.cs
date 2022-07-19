@@ -10,7 +10,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] Transform[] _comboMuzzle;
     [SerializeField] float _attackSpeed;
     [SerializeField] GameObject _swordEquip;
-    [SerializeField] float _test;
     Animator _anim;
     int _comboCount = 0;
     int _comboMuzzleCount = 0;
@@ -77,14 +76,12 @@ public class PlayerAttack : MonoBehaviour
     }
     void ComboEffect1()
     {
-        
         Debug.Log($"ÉRÉìÉ{çUåÇ{_comboMuzzleCount}");
         GameObject _instance = Instantiate(_comboEffect);
         _instance.transform.position = _comboMuzzle[_comboMuzzleCount].transform.position;
         _instance.transform.rotation = _comboMuzzle[_comboMuzzleCount].transform.rotation;
         _instance.transform.parent = transform;
         _comboMuzzleCount++;
-        
     }
     void CanComboMove()
     {

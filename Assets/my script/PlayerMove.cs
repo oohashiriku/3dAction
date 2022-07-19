@@ -29,8 +29,11 @@ public class PlayerMove : MonoBehaviour
         if (_dir != Vector3.zero)
         {
             _anim.SetFloat("speed", _moveSpeed, 0.1f, Time.deltaTime);
-            //正面に速度を代入
-            transform.forward = _dir;
+            if(!_canRoll)
+            {
+                //正面に速度を代入
+                transform.forward = _dir;
+            }
         }
         else
         {
@@ -52,7 +55,7 @@ public class PlayerMove : MonoBehaviour
     }
     void Move()
     {
-        if(_playerAttack._canAttack && !_canRoll)
+        if(_playerAttack._canAttack)
         {
             _dir = new Vector3(0, 0, 0);
         }
@@ -99,6 +102,7 @@ public class PlayerMove : MonoBehaviour
             _playerAttack._canAttack = true;
             _canRoll = true;
             _anim.SetTrigger("isRoll");
+
             //ローリングのアニメーションスタート
             StartCoroutine(RollInterval());
         }
@@ -113,16 +117,18 @@ public class PlayerMove : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         _canRoll = false;
     }
-    /// <summary> 抜刀のアニメーションイベント </summary>
+    /// <summary> 納刀抜刀のアニメーションイベント </summary>
     void EquipEvent()
     {
-        _sword.SetActive(false);
-        _swordEquip.SetActive(true);
-    }
-    /// <summary> 納刀のアニメーションイベント </summary>
-    void UnequipEvent()
-    {
-        _sword.SetActive(true);
-        _swordEquip.SetActive(false);
+        if(_sword.activeSelf)
+        {
+            _sword.SetActive(false);
+            _swordEquip.SetActive(true);
+        }
+        else
+        {
+            _sword.SetActive(true);
+            _swordEquip.SetActive(false);
+        }
     }
 }

@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &140819233
 Transform:
   m_ObjectHideFlags: 0
@@ -3656,16 +3656,12 @@ MonoBehaviour:
   _comboEffect: {fileID: 1840690549904964, guid: a8a6ba91edbeef2439175ecf0e08e6fb, type: 3}
   _rushEffect: {fileID: 1893033738566276, guid: 3e04efdf8ee665d48962b33b06e8e3d3, type: 3}
   _rushMuzzle: {fileID: 686354134}
-  _comboMuzzle1: {fileID: 1811375457}
-  _comboMuzzle2: {fileID: 1007700685}
-  _comboMuzzle3: {fileID: 1961695450}
   _comboMuzzle:
   - {fileID: 1811375457}
   - {fileID: 1007700685}
   - {fileID: 1961695450}
   _attackSpeed: 15
   _swordEquip: {fileID: 140819232}
-  _test: 100
   _canAttack: 0
 --- !u!4 &1536443455
 Transform:
