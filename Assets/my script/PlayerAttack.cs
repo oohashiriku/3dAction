@@ -82,6 +82,7 @@ public class PlayerAttack : MonoBehaviour
         _instance.transform.rotation = _comboMuzzle[_comboMuzzleCount].transform.rotation;
         _instance.transform.parent = transform;
         _comboMuzzleCount++;
+ 
     }
     void CanComboMove()
     {
